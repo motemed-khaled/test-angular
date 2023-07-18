@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="card" *ngFor="let prod of product"  >
+      <img  class="card-img-top img-fluid" [src]="prod.img" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ prod.name }}</h5>
+        <div>
+          <h4>price : {{ prod.price }}</h4>
+          <h4>quantity : {{ prod.quantity }} </h4>
+        </div>
+        <div class="btn-group pt-5" role="group" aria-label="Basic mixed styles example">
+          <button type="button" [disabled]="curentprodId==productIds[0]" (click)="pre()" class="btn btn-danger">Pre</button>
+          <button type="button" (click)="goBack()" class="btn btn-warning">Back</button>
+          <button type="button" [disabled]="curentprodId==productIds[productIds.length - 1]" (click)="next()" class="btn btn-success">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="card " *ngFor="let prod of prodList" >
+      <img  class="card-img-top img-fluid" [src]="prod.img" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ prod.name | uppercase }}</h5>
+        <div>
+          <h4>price : {{ prod.price }}</h4>
+          <h4>quantity : {{ prod.quantity }}</h4>
+        </div>
+        <a role="button" [routerLink]="['/product/id' , prod.id]" class="btn btn-primary">Details</a>
+        <a role="button" (click)="count(prod.id,prod.name,prod.price ,1 )" class="btn btn-primary ms-2">Add to cart</a>
+      </div>
+    </div>
+  </div>
+</div>

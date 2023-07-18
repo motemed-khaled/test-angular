@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <table class="table mt-5 mb-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">quantity</th>
+        <th scope="col">price</th>
+        <th scope="col">total price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of cartList ;let i= index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ prod.name | uppercase }}</td>
+        <td>{{ prod.price }}</td>
+        <td>{{ prod.quantity }}</td>
+        <td>{{ prod.quantity * prod.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

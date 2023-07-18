@@ -1,0 +1,14 @@
+<div class="container-fluid row pt-3">
+  <div class=" col-4">
+    <select class="form-select " aria-label="Default select example" [(ngModel)]="selectedCatId">
+      <option selected value="0">All</option>
+      <option *ngFor="let cat of catogryList" value="{{ cat.id }}">{{ cat.name }}</option>
+    </select>
+  </div>
+
+  <div class="col-4 ps-5">
+    total order price :{{ orderPrice }}
+  </div>
+</div>
+
+<app-product-item [receivedCatId] = "selectedCatId" (onTotalPriceChanged)="onTotalPriceChanged($event)"></app-product-item>
