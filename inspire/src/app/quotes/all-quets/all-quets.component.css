@@ -1,0 +1,24 @@
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.search input{
+  border:1px solid #2196f3;
+  width: 100%;
+  border-radius: 8px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  outline: none;
+  padding: 5px 15px;
+}
+
+.search button{
+  border:1px solid #2196f3;
+  padding: 5px;
+  border-left: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  cursor: pointer;
+}

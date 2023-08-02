@@ -1,0 +1,31 @@
+section{
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .not-found .btn{
+  text-align: center;
+}
+section .not-found .btn button{
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  border: 1px solid transparent;
+}
+section .not-found .btn button:hover{
+  background-color: transparent;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+}
