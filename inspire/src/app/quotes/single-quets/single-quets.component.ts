@@ -7,11 +7,11 @@ import { Contact } from 'src/app/shared-module/interface/contact';
   styleUrls: ['./single-quets.component.css']
 })
 export class SingleQuetsComponent {
-  @Input() contact!: Contact;
-  @Output() deleteOneEvent = new EventEmitter<Contact>();
+  @Input() contact!: Contact[];
+  @Output() deleteOneEvent = new EventEmitter<string>();
 
-  deleteOne() {
-    if(confirm(`are you sure to delet this contact : ${this.contact.name}`))
-    this.deleteOneEvent.emit(this.contact);
+  deleteOne(value:string) {
+    if(confirm(`are you sure to delet this contact : ${value}`))
+    this.deleteOneEvent.emit(value);
   }
 }

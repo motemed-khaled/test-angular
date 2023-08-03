@@ -2,4 +2,4 @@
   <div><input type="text" placeholder="can search by change event" #inputValue (change)="search(inputValue.value)" ></div>
   <div><button (click)="search(inputValue.value)">search</button></div>
 </div>
-<app-single-quets (deleteOneEvent)="deleteContact($event)" *ngFor="let contact of searchContact" [contact]="contact"></app-single-quets>
+<app-single-quets (deleteOneEvent)="deleteContact($event)"  [contact]="searchContact"></app-single-quets>

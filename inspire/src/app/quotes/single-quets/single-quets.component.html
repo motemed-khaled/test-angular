@@ -1,6 +1,6 @@
-<div class="contact">
-  <span class="contact_author">{{ contact!.name }}</span>
-  <p class="contact_text">{{ contact!.conNumber  }}</p>
-  <button class="contact_delete" (click)="deleteOne()" >Delete</button>
+<div class="contact" *ngFor="let con of contact">
+  <span class="contact_author">{{ con!.name }}</span>
+  <p class="contact_text">{{ con!.conNumber  }}</p>
+  <button class="contact_delete" (click)="deleteOne(con.name)" >Delete</button>
 </div>
 

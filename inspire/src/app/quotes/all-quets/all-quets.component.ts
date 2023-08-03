@@ -30,7 +30,7 @@ export class AllQuetsComponent implements OnInit {
     }
   }
 
-  deleteContact(event : Contact):void {
-    this.searchContact = this.searchContact.filter(con=> con.name != event.name)
+  deleteContact(event : string):void {
+    this.searchContact = this.searchContact.filter(con=> con.name != event)
   }
 }
