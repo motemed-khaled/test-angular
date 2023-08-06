@@ -1,0 +1,12 @@
+
+.notfound
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notfound .image button{
+  display: block;
+  margin: 10px auto;
+}

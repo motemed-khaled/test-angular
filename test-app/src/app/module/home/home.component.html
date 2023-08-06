@@ -1,0 +1,14 @@
+
+<section class="conatiner">
+ <div class="box">
+  <div class="home" *ngFor="let cat of allCatogry|async">
+    <div class="card" >
+      <img [src]="cat.img"  class="card-img-top img-fluid" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ cat.name |uppercase }}</h5>
+        <a [routerLink]="['/shop' , cat.id]"   class="btn btn-primary">go to product</a>
+      </div>
+    </div>
+  </div>
+ </div>
+</section>

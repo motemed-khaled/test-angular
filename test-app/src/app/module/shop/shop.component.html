@@ -1,0 +1,24 @@
+
+<div class="container  mt-5 ">
+  <div class="form" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label" >Broduct Name*</label>
+      <input [(ngModel)]="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Broduct price</label>
+      <input  type="number" [(ngModel)]="price"  class="form-control" id="exampleInputPassword1">
+    </div>
+    <select [(ngModel)]="catName"  class="form-select mb-3" aria-label="Default select example"  >
+      <option selected>select catogry name</option>
+      <option *ngFor="let item of allCatogry|async" [value]="item.id">{{ item.name }}</option>
+    </select>
+    <button (click)="addproduct()"  class="btn btn-primary">Add</button>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label" >search by Name*</label>
+    <input #input (keyup)="serach(input.value)" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  >
+  </div>
+</div>
+
+<app-shop-list [allProduct]="products"></app-shop-list>

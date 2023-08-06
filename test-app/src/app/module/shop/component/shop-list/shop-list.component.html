@@ -1,0 +1,15 @@
+
+<section class="conatiner">
+  <div class="box">
+   <div class="home" *ngFor="let prod of allProduct|async">
+     <div class="card" >
+       <img [src]="prod.img"  class="card-img-top img-fluid" alt="...">
+       <div class="card-body">
+         <h5 class="card-title">{{ prod.name |uppercase }}</h5>
+         <h6>{{ prod.price }}</h6>
+         <a (click)="deleteOne(prod.id)" class="btn btn-primary">delete</a>
+       </div>
+     </div>
+   </div>
+  </div>
+ </section>
