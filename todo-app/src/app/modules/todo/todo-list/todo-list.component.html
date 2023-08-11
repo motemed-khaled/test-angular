@@ -1,0 +1,38 @@
+
+<div class="button">
+    <button mat-raised-button color="primary" (click)="showAddCard()">Add</button>
+</div>
+<table mat-table class="mat-elevation-z8" >
+    <thead>
+        <th>no</th>
+        <th>TaskName</th>
+        <th>Completed</th>
+        <th>Delete</th>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of myTodo ; let i=index " >
+        <td>{{ i }}</td>
+        <td>{{ item.task }}</td>
+        <td><mat-slide-toggle [checked]="item.completed" (click)="updateStatus(item.id)">{{item.completed?"completed":"not completed"}}</mat-slide-toggle></td>
+        <td><button mat-raised-button color="warn" (click)="deleteOne(item.id)">Delete</button></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="login-form" [class.d-none]="addtCard" >
+    <mat-card class="card">
+      <mat-card-title class="title">add new task</mat-card-title>
+      <mat-card-content>
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field class="input">
+            <input placeholder="Task Name" matInput type="text"  formControlName="taskName">
+          </mat-form-field>
+          <button class="addbutton" mat-raised-button color="primary" type="submit"> add </button>
+          <button mat-raised-button color="warn" type="button" (click)="showAddCard()"> close </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
