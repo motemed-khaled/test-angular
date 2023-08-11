@@ -14,13 +14,13 @@
         <tr *ngFor="let item of myTodo ; let i=index " >
         <td>{{ i }}</td>
         <td>{{ item.task }}</td>
-        <td><mat-slide-toggle [checked]="item.completed" (click)="updateStatus(item.id)">{{item.completed?"completed":"not completed"}}</mat-slide-toggle></td>
+        <td><mat-slide-toggle [checked]="item.completed" (click)="updateStatus(item.id)">{{(item.completed?"completed"  :"not completed") | uppercase}}</mat-slide-toggle></td>
         <td><button mat-raised-button color="warn" (click)="deleteOne(item.id)">Delete</button></td>
         </tr>
     </tbody>
   </table>
 
-  <div class="login-form" [class.d-none]="addtCard" >
+  <div class="add-form" [class.d-none]="addtCard" >
     <mat-card class="card">
       <mat-card-title class="title">add new task</mat-card-title>
       <mat-card-content>
@@ -34,5 +34,3 @@
       </mat-card-content>
     </mat-card>
   </div>
-
-

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './core/component/header/header.component';
+import { authGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  {path:"" , redirectTo:"login" , pathMatch:"full"},
+  {path:"" , redirectTo:"todo" , pathMatch:"full"},
   {
     path: 'todo',
-    loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule)
+    loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule),
+    canActivate:[authGuard]
   },
   {
     path: 'login',

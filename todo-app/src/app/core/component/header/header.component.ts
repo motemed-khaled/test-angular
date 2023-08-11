@@ -45,6 +45,7 @@ export class HeaderComponent {
     this.userImage = "";
     this.userName = "";
     this.loginState = false;
+    this.authService.userState.next(false);
     this.router.navigate(["login"]);
   }
 }

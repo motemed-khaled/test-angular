@@ -12,8 +12,10 @@ export class AuthServiceService {
   API_URL_todo: string = "http://localhost:4000/todos";
   curentUser: BehaviorSubject<Usres[]> = new BehaviorSubject<Usres[]>([]);
   myTodo: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
+  userState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient: HttpClient) {
+    this.getUserState();
   }
 
   getAllUsers():Observable<Usres[]>{
@@ -35,5 +37,13 @@ export class AuthServiceService {
 
   getCurrentUser():BehaviorSubject<Usres[]> {
     return this.curentUser
+  }
+
+  getUserState(){
+    if (localStorage.getItem("userinfo")) {
+      this.userState.next(true)
+    } else {
+      this.userState.next(false)
+    }
   }
 }

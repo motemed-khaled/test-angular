@@ -34,6 +34,7 @@ export class LoginComponent {
     this.authService.getTodos(this.form.value.username, this.form.value.password)
       .subscribe({
         next: (res) => {
+          this.authService.userState.next(true);
           this.authService.myTodo.next(res);
           this.currentUser = this.allUsers.filter(user => user.username == this.form.value.username);
           this.authService.updateCurrent(this.currentUser);
