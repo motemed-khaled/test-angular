@@ -36,7 +36,7 @@ export class TodoService {
     );
   }
 
-  getAuth() {
+  getAuth(): { headers: HttpHeaders} {
     const user = JSON.parse(localStorage.getItem('userinfo')!);
 
     const httpOptions = {

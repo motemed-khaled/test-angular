@@ -8,13 +8,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = ɵɵinject(Router);
   authService.userState.subscribe({
     next: (res) => {
-      status = res
-    }
-  })
+      status = res;
+    },
+  });
   if (status) {
     return true;
   } else {
-    router.navigate(["login"]);
+    router.navigate(['login']);
     return false;
   }
 };
