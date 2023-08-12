@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Todo } from 'src/app/core/models/todo';
 import { AuthServiceService } from 'src/app/core/service/auth-service.service';
@@ -7,72 +7,85 @@ import { TodoService } from '../todo.service';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   form!: FormGroup;
-  addtCard: boolean = true;
-  myTodo: Todo[] = [];
+  addtCard: boolean;
+  myTodo: Todo[];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private authService: AuthServiceService,
-  private todoService:TodoService) {
+    private todoService: TodoService
+  ) {
+    this.addtCard = true;
+    this.myTodo = [];
+  }
+
+  ngOnInit(): void {
     this.generateForm();
-     this.authService.myTodo.subscribe({
+    this.authService.myTodo.subscribe({
       next: (res) => {
-         this.myTodo = res;
-      }
-    })
+        this.myTodo = res;
+      },
+    });
   }
 
-  generateForm(): void{
+  generateForm(): void {
     this.form = this.formBuilder.group({
-      taskName:["" , [Validators.required]]
-    })
+      taskName: ['', [Validators.required]],
+    });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.todoService.createTodo(this.form.value.taskName).subscribe({
       next: (res) => {
-        const user = JSON.parse(localStorage.getItem("userinfo")!)
-        this.authService.getTodos(user[0].username, user[0].password).subscribe({
-          next: (res) => {
-            this.myTodo = res;
-          }
-        })
-      }
-    })
-    console.table()
+        const user = JSON.parse(localStorage.getItem('userinfo')!);
+        this.authService
+          .getTodos(user[0].username, user[0].password)
+          .subscribe({
+            next: (res) => {
+              this.myTodo = res;
+            },
+          });
+      },
+    });
+    console.table();
   }
 
-  deleteOne(id: number){
+  deleteOne(id: number): void {
     this.todoService.deleteTodo(id).subscribe({
       next: (res) => {
-        const user = JSON.parse(localStorage.getItem("userinfo")!)
-        this.authService.getTodos(user[0].username, user[0].password).subscribe({
-          next: (res) => {
-            this.myTodo = res;
-          }
-        })
-      }
-    })
+        const user = JSON.parse(localStorage.getItem('userinfo')!);
+        this.authService
+          .getTodos(user[0].username, user[0].password)
+          .subscribe({
+            next: (res) => {
+              this.myTodo = res;
+            },
+          });
+      },
+    });
   }
 
-  updateStatus(id:number){
+  updateStatus(id: number): void {
     this.todoService.updateTodo(id).subscribe({
       next: (res) => {
-        console.log(res)
-        const user = JSON.parse(localStorage.getItem("userinfo")!)
-        this.authService.getTodos(user[0].username, user[0].password).subscribe({
-          next: (res) => {
-            this.myTodo = res;
-          }
-        })
-      }
-    })
+        console.log(res);
+        const user = JSON.parse(localStorage.getItem('userinfo')!);
+        this.authService
+          .getTodos(user[0].username, user[0].password)
+          .subscribe({
+            next: (res) => {
+              this.myTodo = res;
+            },
+          });
+      },
+    });
   }
 
-  showAddCard(): void{
-    this.addtCard=!this.addtCard
+  showAddCard(): void {
+    this.addtCard = !this.addtCard;
   }
 }
