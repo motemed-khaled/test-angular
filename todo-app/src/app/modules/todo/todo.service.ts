@@ -7,7 +7,7 @@ import { Todo } from 'src/app/core/models/todo';
   providedIn: 'root',
 })
 export class TodoService {
-  API_URL: string;
+  private API_URL: string;
 
   constructor(private httpClient: HttpClient) {
     this.API_URL = 'http://localhost:4000/todos';

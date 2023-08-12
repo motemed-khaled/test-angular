@@ -6,7 +6,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   let status: boolean = false;
   const authService = ɵɵinject(AuthServiceService);
   const router = ɵɵinject(Router);
-  authService.userState.subscribe({
+  authService.getUserState().subscribe({
     next: (res) => {
       status = res;
     },

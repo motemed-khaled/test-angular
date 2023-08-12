@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
       .getTodos(this.form.value.username, this.form.value.password)
       .subscribe({
         next: (res) => {
-          this.authService.userState.next(true);
-          this.authService.myTodo.next(res);
+          this.authService.setUserState(true);
+          this.authService.setMyTodo(res);
           this.currentUser = this.allUsers.filter(
             (user) => user.username == this.form.value.username
           );
@@ -63,9 +63,6 @@ export class LoginComponent implements OnInit {
           this.error = 'login fail';
         },
         complete: () => {
-          if (window.localStorage.getItem('user')) {
-            const userName = JSON.parse(window.localStorage.getItem('user')!);
-          }
           this.router.navigate(['/todo']);
         },
       });

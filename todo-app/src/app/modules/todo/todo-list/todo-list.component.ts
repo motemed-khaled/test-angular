@@ -25,7 +25,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateForm();
-    this.authService.myTodo.subscribe({
+    this.authService.getMyTodo().subscribe({
       next: (res) => {
         this.myTodo = res;
       },
@@ -51,7 +51,6 @@ export class TodoListComponent implements OnInit {
           });
       },
     });
-    console.table();
   }
 
   deleteOne(id: number): void {

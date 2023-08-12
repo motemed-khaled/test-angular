@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   userImage: string;
   userName: string;
   loginState: boolean;
-  currentUser!: Usres[];
 
   constructor(private authService: AuthServiceService, private router: Router) {
     this.userImage = '';
@@ -26,9 +25,10 @@ export class HeaderComponent implements OnInit {
       this.userImage = user[0].avatar;
       this.userName = user[0].name;
       this.loginState = true;
+      this.authService.setUserState(true);
       this.authService.getTodos(user[0].username, user[0].password).subscribe({
         next: (res) => {
-          this.authService.myTodo.next(res);
+          this.authService.setMyTodo(res);
         },
       });
     }
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
     this.userImage = '';
     this.userName = '';
     this.loginState = false;
-    this.authService.userState.next(false);
+    this.authService.setUserState(false);
     this.router.navigate(['login']);
   }
 }

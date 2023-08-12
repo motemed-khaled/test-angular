@@ -10,9 +10,9 @@ import { Todo } from '../models/todo';
 export class AuthServiceService {
   API_URL_Users: string;
   API_URL_todo: string;
-  curentUser: BehaviorSubject<Usres[]>;
-  myTodo: BehaviorSubject<Todo[]>;
-  userState: BehaviorSubject<boolean>;
+  private curentUser: BehaviorSubject<Usres[]>;
+  private myTodo: BehaviorSubject<Todo[]>;
+  private userState: BehaviorSubject<boolean>;
 
   constructor(private httpClient: HttpClient) {
     this.API_URL_Users = 'http://localhost:4000/users';
@@ -20,7 +20,7 @@ export class AuthServiceService {
     this.curentUser = new BehaviorSubject<Usres[]>([]);
     this.myTodo = new BehaviorSubject<Todo[]>([]);
     this.userState = new BehaviorSubject<boolean>(false);
-    this.getUserState();
+    this.updateUserState();
   }
 
   getAllUsers(): Observable<Usres[]> {
@@ -44,11 +44,27 @@ export class AuthServiceService {
     return this.curentUser;
   }
 
-  getUserState(): void {
+  updateUserState(): void {
     if (localStorage.getItem('userinfo')) {
       this.userState.next(true);
     } else {
       this.userState.next(false);
     }
+  }
+
+  getUserState(): Observable<boolean> {
+    return this.userState.asObservable();
+  }
+
+  setUserState(value: boolean): void {
+    this.userState.next(value);
+  }
+
+  setMyTodo(value: Todo[]) {
+    this.myTodo.next(value);
+  }
+
+  getMyTodo(): Observable<Todo[]> {
+    return this.myTodo.asObservable();
   }
 }
